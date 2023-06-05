@@ -1,0 +1,125 @@
+.container-header {
+  display: flex;
+  white-space: nowrap;
+  height: 60px;
+  background-color: #ffffff;
+
+  &__title {
+    height: fit-content;
+    margin-left: 20px;
+    margin-top: 14px;
+  }
+
+  h1 {
+    font-family: 'Inter UI';
+    font-size: 18px;
+    align-items: center;
+    color: rgba(0, 0, 0, 0.85);
+    cursor: pointer;
+  }
+
+  &__profile {
+    list-style: none;
+    flex-basis: 100%;
+    margin-left: auto;
+  }
+
+  &__profile > li {
+    margin-right: 20px;
+    margin-left: auto;
+    width: fit-content;
+  }
+
+  &__profile > li a:first-child {
+    text-decoration: none;
+    position: relative;
+    left: -5%;
+    bottom: 8px;
+    color: #52c41a;
+  }
+
+  &__logOut {
+    list-style: none;
+    margin-left: 12px;
+    margin-right: 20px;
+    margin-top: 12px;
+  }
+
+  &__logOut button {
+    background: none;
+    border: 1px solid rgba(0, 0, 0, 0.75);
+    padding: 10px;
+    border-radius: 5px;
+    color: rgba(0, 0, 0, 0.75);
+    cursor: pointer;
+  }
+
+  &__logOut button:active {
+    transform: scale(0.8);
+    transition: ease-in-out 0.3s all;
+  }
+
+  &__profile li > a:first-child {
+    border: 1px solid #52c41a;
+    border-radius: 5px;
+    margin-right: 10px;
+    padding: 5px;
+    padding-top: 1px;
+    padding-bottom: 3px;
+  }
+
+  &__profile li > a:last-child {
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.75);
+  }
+
+  &__profile li > a > span {
+    position: relative;
+    bottom: 10px;
+    right: 5px;
+    cursor: pointer;
+  }
+  &__profile li > a > img {
+    width: 46px;
+    height: 46px;
+    position: relative;
+    top: 8px;
+    left: 5px;
+    cursor: pointer;
+  }
+
+  &__list {
+    list-style: none;
+    flex-basis: fit-content;
+    display: flex;
+    width: 100%;
+    margin-top: 14px;
+    margin-bottom: 12px;
+    justify-content: flex-end;
+    margin-left: auto;
+  }
+
+  &__list li {
+    width: 65px;
+  }
+
+  &__list li:first-child {
+    border: 1px solid #52c41a;
+    border-radius: 5px;
+    margin-right: 10px;
+  }
+  &__list li:last-child {
+    margin-right: 20px;
+  }
+
+  &__list li a {
+    text-decoration: none;
+    vertical-align: sub;
+    position: relative;
+    left: 12%;
+  }
+
+  &__list li:first-child a {
+    color: #52c41a;
+  }
+}

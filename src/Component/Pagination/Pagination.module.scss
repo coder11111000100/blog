@@ -1,0 +1,13 @@
+.conainer {
+  width: 100%;
+  &__pagination {
+    width: fit-content;
+    margin: auto;
+    margin-top: 20px;
+  }
+
+  .conainer__pagination li {
+    background-color: #e5e5e5;
+    border: none;
+  }
+}

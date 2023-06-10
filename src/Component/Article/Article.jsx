@@ -1,5 +1,5 @@
 import ReactMarkdown from 'react-markdown';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { HeartFilled, HeartOutlined } from '@ant-design/icons';
 import { nanoid } from '@reduxjs/toolkit';
 import { NavLink } from 'react-router-dom';
@@ -9,17 +9,11 @@ import { setFavorite, deleteFavorite } from '../../store/reducer';
 
 function Article({ article }) {
   const dispatch = useDispatch();
-  const { slug, author, title, description, tagList, createdAt, updatedAt, favoritesCount } = article;
+  const { slug, author, title, description, tagList, createdAt, updatedAt, favoritesCount, favorited } = article;
   const { username, image } = author;
-  const myFavorited = useSelector((state) => {
-    if (state.article.myFavorited.length) {
-      return state.article.myFavorited.includes(slug);
-    }
-    return false;
-  });
 
   const onHeightFavoriteCount = () => {
-    if (myFavorited) {
+    if (favorited) {
       dispatch(deleteFavorite(slug));
     } else {
       dispatch(setFavorite(slug));
@@ -37,7 +31,7 @@ function Article({ article }) {
                   <ReactMarkdown>{title}</ReactMarkdown>
                 </NavLink>
               </h5>
-              {myFavorited ? (
+              {favorited ? (
                 <HeartFilled
                   aria-hidden="true"
                   onClick={onHeightFavoriteCount}

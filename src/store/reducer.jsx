@@ -1,9 +1,17 @@
 /* eslint-disable no-use-before-define */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-const articlesLoadList = createAsyncThunk('@@create/articles', async (_, { rejectWithValue }) => {
+const articlesLoadList = createAsyncThunk('@@create/articles', async (_, { rejectWithValue, getState }) => {
+  const TOKEN = getState().user?.user?.user?.token;
   try {
-    const res = await fetch('https://blog.kata.academy/api/articles');
+    const res = await fetch(`https://blog.kata.academy/api/articles`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Token ${TOKEN}`,
+      },
+    });
+
     if (!res.ok) {
       throw new Error();
     }
@@ -25,11 +33,18 @@ const getArticle = createAsyncThunk('@@get/article', async (slug, { rejectWithVa
   }
 });
 
-const pageArticles = createAsyncThunk('@@page/articles', async (page, { dispatch, rejectWithValue }) => {
+const pageArticles = createAsyncThunk('@@page/articles', async (page, { dispatch, getState, rejectWithValue }) => {
+  const TOKEN = getState().user?.user?.user?.token;
   dispatch(pagePush(page));
   try {
     const number = page * 20;
-    const res = await fetch(`https://blog.kata.academy/api/articles?offset=${number}`);
+    const res = await fetch(`https://blog.kata.academy/api/articles?offset=${number}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Token ${TOKEN}`,
+      },
+    });
     if (!res.ok) {
       throw new Error();
     }
@@ -163,7 +178,6 @@ const sliceArticles = createSlice({
   name: 'articles',
   initialState: {
     articles: [],
-    myFavorited: [],
     singlArticle: [],
     articlePage: 1,
     articleTotalPage: 50,
@@ -182,7 +196,6 @@ const sliceArticles = createSlice({
     builder
       .addCase(setFavorite.fulfilled, (state, action) => {
         const { article } = action.payload;
-        state.myFavorited.push(article.slug);
         const arr = state.articles.map((item) => {
           if (item.slug === article.slug) {
             return article;
@@ -193,7 +206,6 @@ const sliceArticles = createSlice({
       })
       .addCase(deleteFavorite.fulfilled, (state, action) => {
         const { article } = action.payload;
-        state.myFavorited.pop(article.slug);
         const arr = state.articles.map((item) => {
           if (item.slug === article.slug) {
             return article;

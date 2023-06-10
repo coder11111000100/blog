@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
@@ -30,6 +30,12 @@ function Login() {
       });
   };
 
+  useEffect(() => {
+    if (errors?.email || errors?.password) {
+      setMessageError({});
+    }
+  }, [errors?.email, errors?.password]);
+
   return (
     <div className={styles['container']}>
       <div className={styles['container__title']}>
@@ -52,7 +58,7 @@ function Login() {
           <div className={styles.error}>
             <span>{errors && errors?.email?.message}</span>
           </div>
-          {messageError?.errors !== undefined ? (
+          {messageError?.errors && !errors?.email ? (
             <div className={`${styles['error-right']} ${styles.error}`}>
               <span>{messageError.errors['email or password']}</span>
             </div>
@@ -71,14 +77,14 @@ function Login() {
           <div className={styles.error}>
             <span>{errors && errors?.password?.message}</span>
           </div>
-          {messageError?.errors !== undefined ? (
+          {messageError?.errors && !errors?.password ? (
             <div className={`${styles['error-right']} ${styles.error}`}>
               <span>email or password: is invalid!!!</span>
             </div>
           ) : null}
         </div>
 
-        <button type="submit">Create</button>
+        <button type="submit"> Login</button>
         <span>
           Don’t have an account?{' '}
           <NavLink to="/sign-up" style={{ textDecoration: 'none' }}>

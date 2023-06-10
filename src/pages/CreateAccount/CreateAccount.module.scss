@@ -10,7 +10,7 @@
   /* Regular / 12px | 20 px */
   position: relative;
   bottom: 70px;
-  font-family: 'Roboto';
+  font-family: 'Inter-Regular';
   font-style: normal;
   font-weight: 400;
   font-size: 12px;
@@ -87,7 +87,7 @@
   margin-bottom: 32px;
   display: block;
   color: #262626;
-  font-family: 'Roboto';
+  font-family: 'Inter-Regular';
   font-style: normal;
   font-weight: 800;
   font-size: 20px;
@@ -104,9 +104,16 @@
   position: absolute;
   bottom: -18px;
   color: #f5222d;
-  font-family: 'Roboto';
+  font-family: 'Inter-Regular';
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 22px;
+}
+
+.error-right > span {
+  right: 0;
+  left: 0;
+  margin: auto;
+  width: fit-content;
 }

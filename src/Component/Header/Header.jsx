@@ -28,7 +28,7 @@ function Header() {
           <li>
             <NavLink to="/new-article">Create article</NavLink>
             <NavLink to="/profile">
-              <span>John Doe</span>
+              <span> {user?.user?.username}</span>
               <img src={user?.user.image || img} alt="logo" />
             </NavLink>
           </li>

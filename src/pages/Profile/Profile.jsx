@@ -1,12 +1,13 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { UpdateUserProfileAccount } from '../../store/UserReducer';
 import styles from './Profile.module.scss';
 
 function Profile() {
+  const user = useSelector((state) => state.user.user.user);
   const [messageError, setMessageError] = useState('');
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -15,7 +16,14 @@ function Profile() {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      username: user.username || '',
+      email: user.email || '',
+      password: user.password || '',
+      image: user.image || '',
+    },
+  });
   const onSubmit = (data) => {
     dispatch(UpdateUserProfileAccount(data))
       .unwrap()
@@ -28,6 +36,12 @@ function Profile() {
         setMessageError(JSON.parse(error.message));
       });
   };
+
+  useEffect(() => {
+    if (errors?.email || errors?.password || errors?.username) {
+      setMessageError({});
+    }
+  }, [errors?.email, errors?.password, errors?.username]);
 
   return (
     <div className={styles['container']}>
@@ -48,8 +62,8 @@ function Profile() {
           <div className={styles.error}>
             <span>{errors && errors?.username?.message}</span>
           </div>
-          {messageError.errors?.username ? (
-            <div className={styles.error}>
+          {messageError.errors?.username && !errors?.username ? (
+            <div className={`${styles['error-right']} ${styles.error}`}>
               <span>{messageError.errors.username}</span>
             </div>
           ) : null}
@@ -70,8 +84,8 @@ function Profile() {
           <div className={styles.error}>
             <span>{errors && errors?.email?.message}</span>
           </div>
-          {messageError.errors?.email ? (
-            <div className={styles.error}>
+          {messageError.errors?.email && !errors?.email ? (
+            <div className={`${styles['error-right']} ${styles.error}`}>
               <span>{messageError.errors.email}</span>
             </div>
           ) : null}

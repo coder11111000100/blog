@@ -37,7 +37,9 @@ function NewArticle() {
   });
 
   const onSubmit = (data) => {
-    dispatch(slug ? UpdateArticle({ data, slug }) : newArticle(data))
+    const { tagList: list, ...arg } = data;
+    const tagList = list.filter((item) => item.trim() !== '');
+    dispatch(slug ? UpdateArticle({ tagList, arg, slug }) : newArticle({ tagList, arg }))
       .unwrap()
       .then(() => {
         reset();

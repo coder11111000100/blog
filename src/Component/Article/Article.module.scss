@@ -1,5 +1,6 @@
 .article-conteiner {
   padding-bottom: 25px;
+  padding-right: 20px;
   margin-top: 25px;
   border-radius: 5px;
   background-color: #ffffff;
@@ -17,6 +18,8 @@
     margin: 12px;
     margin-left: 20px;
     flex-direction: column;
+    padding-right: 20px;
+    width: 70%;
   }
 
   &__title-item1 {
@@ -27,7 +30,7 @@
   &__title h5 {
     /* H5 - Header 5 */
 
-    font-family: 'Inter UI';
+    font-family: 'Inter-Regular';
     font-size: 20px;
     line-height: 28px;
     /* identical to box height, or 140% */
@@ -52,7 +55,7 @@
   }
 
   &__name {
-    font-family: 'Inter UI';
+    font-family: 'Inter-Regular';
     font-size: 18px;
     line-height: 28px;
     /* identical to box height, or 156% */
@@ -68,7 +71,7 @@
   &__date {
     /* @font-size-sm: 12px */
 
-    font-family: 'Inter UI';
+    font-family: 'Inter-Regular';
     font-size: 12px;
     line-height: 22px;
     /* identical to box height, or 183% */
@@ -91,12 +94,14 @@
     gap: 8px;
     flex-wrap: wrap;
     margin-top: 10px;
+    width: 70%;
   }
   &__tags span {
     border: 1px solid rgba(0, 0, 0, 0.5);
     border-radius: 2px;
     padding: 0px 7px;
     padding-bottom: 3px;
+    word-wrap: anywhere;
   }
 
   &__description {

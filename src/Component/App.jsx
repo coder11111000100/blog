@@ -8,6 +8,7 @@ import { Login } from '../pages/Login/login';
 import { Profile } from '../pages/Profile/Profile';
 import { NewArticle } from '../pages/NewArticle/NewArticle';
 import { HocComponent } from '../pages/HocComponent/HocComponent';
+import '../main.scss';
 import './App.css';
 
 function App() {

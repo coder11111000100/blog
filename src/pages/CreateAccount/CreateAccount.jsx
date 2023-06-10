@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Divider, Checkbox } from 'antd';
 import { useDispatch } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom';
@@ -32,6 +32,13 @@ function CreateAccount() {
         setMessageError(JSON.parse(error.message));
       });
   };
+
+  useEffect(() => {
+    if (errors?.email || errors?.password || errors?.username) {
+      setMessageError({});
+    }
+  }, [errors?.email, errors?.password, errors?.username]);
+
   return (
     <div className={styles['container']}>
       <div className={styles['container__title']}>
@@ -51,9 +58,9 @@ function CreateAccount() {
           <div className={styles.error}>
             <span>{errors && errors?.username?.message}</span>
           </div>
-          {messageError.errors?.username ? (
-            <div className={styles.error}>
-              <span>{messageError.errors.username}</span>
+          {messageError.errors?.username && !errors?.username ? (
+            <div className={`${styles['error-right']} ${styles.error}`}>
+              <span>{messageError?.errors?.username}</span>
             </div>
           ) : null}
         </div>
@@ -73,9 +80,9 @@ function CreateAccount() {
           <div className={styles.error}>
             <span>{errors && errors?.email?.message}</span>
           </div>
-          {messageError.errors?.email ? (
-            <div className={styles.error}>
-              <span>{messageError.errors.email}</span>
+          {messageError.errors?.email && !errors?.email ? (
+            <div className={`${styles['error-right']} ${styles.error}`}>
+              <span>{messageError?.errors?.email}</span>
             </div>
           ) : null}
         </div>

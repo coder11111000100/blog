@@ -1,5 +1,6 @@
 .article-conteiner {
   padding-bottom: 25px;
+  padding-right: 20px;
   width: 940px;
   margin: auto;
   margin-top: 25px;
@@ -14,7 +15,8 @@
 
   &__button {
     position: absolute;
-    left: 72%;
+    margin-left: 750px;
+    width: 200px;
     top: 210px;
   }
 
@@ -47,6 +49,8 @@
     margin: 12px;
     margin-left: 20px;
     flex-direction: column;
+    padding-right: 20px;
+    width: 70%;
   }
 
   &__title-item1 {
@@ -57,7 +61,7 @@
   &__title h5 {
     /* H5 - Header 5 */
     word-wrap: anywhere;
-    font-family: 'Inter UI';
+    font-family: 'Inter-Regular';
     font-size: 20px;
     line-height: 28px;
     /* identical to box height, or 140% */
@@ -82,7 +86,7 @@
   }
 
   &__name {
-    font-family: 'Inter UI';
+    font-family: 'Inter-Regular';
     font-size: 18px;
     line-height: 28px;
     /* identical to box height, or 156% */
@@ -98,7 +102,7 @@
   &__date {
     /* @font-size-sm: 12px */
 
-    font-family: 'Inter UI';
+    font-family: 'Inter-Regular';
     font-size: 12px;
     line-height: 22px;
     /* identical to box height, or 183% */
@@ -121,12 +125,14 @@
     gap: 8px;
     flex-wrap: wrap;
     margin-top: 10px;
+    width: 70%;
   }
   &__tags span {
     border: 1px solid rgba(0, 0, 0, 0.5);
     border-radius: 2px;
     padding: 0px 7px;
     padding-bottom: 3px;
+    word-wrap: anywhere;
   }
 
   &__description {
@@ -144,7 +150,7 @@
 
   &__confirmation {
     position: absolute;
-    left: 80%;
+    margin-left: 850px;
     top: 210px;
     width: 160px;
     height: 80px;
